@@ -1,0 +1,146 @@
+<html>
+<head>
+    <title>L'ville Math Flow Chart</title>
+<script type="text/javascript" src="courses.js"></script>
+<script src="jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script>
+
+sequenceOff();
+
+function sequenceOff () {
+    $(document).ready(function(){
+        $("#askForm").hide();
+        $("#seqCont").hide();
+            $('#instructionBox').delay(20).slideDown(200);
+            $('#instructionBox').hover(function(){
+                //$('#instructionHead').toggleClass('warning');
+            });
+            $('#courseInfo').delay(1000).fadeIn(1500);
+            $(".flowchart").delay(1000).fadeIn(1500);
+            $('.instructionBox')
+            $('.reset').hover(function(){
+                $('.reset').toggleClass('resetHover');
+            });
+            $('.reset').on('click', function() {
+                location.reload();
+            });
+            var initDesc = false;
+    });
+}
+
+
+function sequenceOn () {
+    var userChoice;
+    $(document).ready(function(){
+            $("#askForm").show();
+            $(".flowchart").hide();
+            $('#courseInfo').hide();
+            $('#instructionBox').hide();
+            $('#warningBox').hide();
+            $('#seqCont').hide();
+            buttonListeners();
+        });
+    function buttonListeners () {
+        $('#choice2, #choice3, #choice4, #choice5').hover(function(){
+            $(this).toggleClass('buttonOn');
+        });
+
+        $('#choice2, #choice3, #choice4, #choice5').on('click', function() {
+            console.log(this.id);
+            switch(this.id) {
+                case 'choice2':
+                    userChoice = 2;
+                    $('#seqCont').show();
+                    break;
+                case 'choice3':
+                    userChoice = 3;
+                    $('#seqCont').show();
+                    $('#form2').hide();
+                    break;
+                case 'choice4':
+                    userChoice = 4;
+                    $('#seqCont').show();
+                    $('#form2, #form3').hide();
+                    break;
+                case 'choice5':
+                    userChoice = 5;
+                    $('#seqCont').show();
+                    $('#form2, #form3, #form4').hide();
+                    break;
+            }
+            console.log("userChoice: " + userChoice);
+            $("#askForm").fadeOut(100);
+            $('#instructionBox').delay(20).slideDown(200);
+            //$('#warningBox').delay(20).slideDown(200);
+            $('#courseInfo').delay(1000).fadeIn(1500);
+            $(".flowchart").delay(1000).fadeIn(1500);
+            var initDesc = false;
+
+
+        });
+    }
+}
+</script>
+
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+
+    <div id="askForm">
+        <h2>What form will you be in next Fall?</h2>
+        <div id="buttons">
+            <div id="choice2" class="button">Form II</div>
+            <br>
+            <div id="choice3" class="button">Form III</div>
+            <br>
+            <div id="choice4" class="button">Form IV</div>
+            <br>
+            <div id="choice5" class="button">Form V</div>
+        </div>
+    </div>    
+
+    <div id="courseInfo">
+        <h2 id="courseName"><span style="margin:0px 0px 0px 40px">Math Department Course Planner</span></h2>
+        <h4 id="courseCode"></h4>
+        <p id="courseDesc"><span style="margin: 0px 0px 0px 80px"><img src="seal.png" height="75%"></span></p>
+    </div>
+
+    <div id="instructionBox">
+        <h2 id="instructionHead"  class="instruction">Instructions</h2>
+        <h2 id="instructionBody">Please select the course you are currently taking or the one that is closest in content to your current math course.</h2>
+    </div>
+
+    <h2 class="reset">Restart</h2>
+
+
+
+    <div id="seqCont">
+        <div id="form2" class="forms">
+            <div id="2Fall" class="selectBlock"></div><div id="2Winter" class="selectBlock"></div><div id="2Spring" class="selectBlock"></div>
+        </div>
+        <div id="form3" class="forms">
+            <div id="3Fall" class="selectBlock"></div>
+            <div id="3Winter" class="selectBlock"></div>
+            <div id="3Spring" class="selectBlock"></div>
+        </div>
+        <div id="form4" class="forms">
+            <div id="4Fall" class="selectBlock"></div>
+            <div id="4Winter" class="selectBlock"></div>
+            <div id="4Spring" class="selectBlock"></div>
+        </div>
+        <div id="form5" class="forms">
+            <div id="5Fall" class="selectBlock"></div>
+            <div id="5Winter" class="selectBlock"></div>
+            <div id="5spring" class="selectBlock"></div>
+        </div>
+    </div>
+
+
+
+<script type="text/javascript" src="flowchart.js"></script>
+
+
+</body>
+</html>
